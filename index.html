@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Website</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  </head>
+  <body>
+    <nav>
+      <a href="#" class="logo"><span>Deejay</span></a>
+
+      <ul class="links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </ul>
+
+      <i class="bx bx-menu-alt-right" id="menu"></i>
+
+      <a href="#socials" class="btn">Connect with me</a>
+    </nav>
+
+    <section id="home">
+      <img src="image.jpg" alt="" />
+
+      <div class="info-box">
+        <h1><span>Hello, I'm Deejay</span></h1>
+        <h3><span>Web Developer</span> based in the Philippines</h3>
+        <p>
+          I create modern, user-friendly websites that help businesses grow
+          online. Whether you need a simple portfolio or a complex web
+          application, I’m here to bring your ideas to life.
+        </p>
+      </div>
+
+      <div class="btn-box">
+        <!-- Book an Appointment Button -->
+        <div id="book-appointment-container"></div>
+      </div>
+
+      <!-- Google Calendar Appointment Scheduling begin -->
+      <link
+        href="https://calendar.google.com/calendar/scheduling-button-script.css"
+        rel="stylesheet"
+      />
+      <script
+        src="https://calendar.google.com/calendar/scheduling-button-script.js"
+        async
+      ></script>
+      <script>
+        (function () {
+          var target = document.getElementById("book-appointment-container");
+          window.addEventListener("load", function () {
+            calendar.schedulingButton.load({
+              url: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2UzkZ5cqrpd8L6VNoGwBMoaHK4Bpg_uEsCv01VR5wwMdsuTT0RZCI1Rv7gaFAgjPofl8B5jB3T?gv=true",
+              color: "#ffffff",
+              label: "Book an Appointment",
+              target,
+            });
+          });
+        })();
+      </script>
+      <!-- end Google Calendar Appointment Scheduling -->
+    </section>
+
+    <section id="about">
+      <div class="about-box">
+        <div class="about-info">
+          <h1><span>About Me</span></h1>
+          <p>
+            I’m Deejay Piaoan, a passionate web developer from the Philippines.
+            I specialize in creating responsive and functional websites that
+            meet the needs of businesses and individuals. My goal is to deliver
+            high-quality solutions that are both visually appealing and easy to
+            use.
+          </p>
+        </div>
+
+        <h2><span>Skills</span></h2>
+
+        <div class="skills">
+          <ul>
+            <li>
+              <span><i class="bx bx-chevron-right"></i> HTML</span>
+            </li>
+            <li>
+              <span><i class="bx bx-chevron-right"></i> CSS</span>
+            </li>
+            <li>
+              <span><i class="bx bx-chevron-right"></i> Javascript</span>
+            </li>
+          </ul>
+
+          <ul>
+            <li>
+              <span><i class="bx bx-chevron-right"></i> Laravel</span>
+            </li>
+            <li>
+              <span><i class="bx bx-chevron-right"></i> React</span>
+            </li>
+            <li>
+              <span><i class="bx bx-chevron-right"></i> MySQL</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <img src="about.jpg" alt="" />
+    </section>
+
+    <section id="services">
+      <h1 class="header"><span>Services</span></h1>
+
+      <div class="services-container">
+        <div class="box">
+          <h1><span>Web Design</span></h1>
+          <p>
+            I make clean, modern, and responsive websites that work seamlessly
+            across all devices. Whether you’re starting fresh or updating an
+            existing site, I’ll ensure it looks great and performs flawlessly.
+          </p>
+          <img src="web-design.jpg" alt="" />
+        </div>
+
+        <div class="box">
+          <h1><span>Graphic Design</span></h1>
+          <p>
+            From crafting logos, social media graphics, and more to align with
+            your brand identity. Whether you need visuals for marketing or
+            branding, I’ll help you stand out with professional designs.
+          </p>
+
+          <img src="graphic.jpg" alt="" />
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h1 class="header"><span>Contact</span></h1>
+      <form id="contact-form">
+        <div class="input-box">
+          <span>Full Name</span>
+          <input
+            type="text"
+            id="full-name"
+            placeholder="Enter Your Full Name"
+            required
+          />
+        </div>
+
+        <div class="input-box">
+          <span>Your Email</span>
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter Your Email"
+            required
+          />
+        </div>
+
+        <div class="input-box">
+          <span>Your Message</span>
+          <textarea
+            id="message"
+            placeholder="Enter Your Message"
+            required
+          ></textarea>
+        </div>
+
+        <div><button type="submit" class="btn">Submit</button></div>
+      </form>
+    </section>
+
+    <footer id="footer">
+      <div class="col-left">
+        <div class="col-box">
+          <span><i class="bx bxs-location-plus"></i></span>
+          <span>Ilocano, Sudipen, La Union 2520</span>
+        </div>
+
+        <div class="col-box">
+          <span><i class="bx bxs-phone"></i></span>
+          <span>+63 931 778 2925</span>
+        </div>
+
+        <div class="col-box">
+          <span><i class="bx bxs-envelope"></i></span>
+          <span>deejaydpiaoan@gmail.com</span>
+        </div>
+      </div>
+
+      <div class="col-right" id="socials">
+        <span>About My Services</span>
+        <p>
+          I provide web development and graphic design services tailored to your
+          needs. Whether you’re looking for a new website, app, or branding
+          materials, I’m here to help you succeed online.
+        </p>
+
+        <div class="social-icons">
+          <a href="https://www.facebook.com/deejaypiaoan" target="_blank">
+            <span><i class="bx bxl-facebook-square"></i></span>
+          </a>
+          <a href="https://www.instagram.com/deejaypiaoan/" target="_blank">
+            <span><i class="bx bxl-instagram-alt"></i></span>
+          </a>
+          <a
+            href="https://www.upwork.com/fl/~011a338a1c657b8c24?mp_source=share"
+            target="_blank"
+          >
+            <span><i class="bx bxl-upwork"></i></span>
+          </a>
+          <a href="https://github.com/deejaypiaoan" target="_blank">
+            <span><i class="bx bxl-github"></i></span>
+          </a>
+        </div>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
