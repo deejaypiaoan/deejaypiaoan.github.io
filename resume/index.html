@@ -127,7 +127,7 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:0 16px 30px}
 <footer>&copy; 2026 Deejay D. Piaoan &middot; <a href="/">deejaypiaoan.free.nf</a></footer>
 <style>.djtoast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:2147483000;max-width:calc(100% - 32px);background:#202124;color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:12px 16px;font:600 14px/1.45 inherit;box-shadow:0 12px 30px -10px rgba(0,0,0,.5)}
 </style>
-<script>(function(){var E='deejaydpiaoan@gmail.com';function toast(m){var t=document.createElement('div');t.className='djtoast';t.setAttribute('role','status');t.textContent=m;document.body.appendChild(t);setTimeout(function(){t.remove();},6000);}
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-slack]');if(!a)return;e.preventDefault();var done=function(){toast('Slack: '+E+' (copied). Add me in Slack with this email and I will accept right away.');};try{navigator.clipboard.writeText(E).then(done,done);}catch(x){done();}});})();</script>
+<script>(function(){var E='deejaydpiaoan@gmail.com';function toast(m){var o=document.querySelector('.djtoast');if(o)o.remove();var t=document.createElement('div');t.className='djtoast';t.setAttribute('role','status');t.textContent=m;document.body.appendChild(t);setTimeout(function(){t.remove();},7000);}
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-slack]');if(!a)return;e.preventDefault();toast('My Slack: '+E+'. Add me with this email in Slack and I will accept right away.');try{if(navigator.clipboard)navigator.clipboard.writeText(E).catch(function(){});}catch(x){}});})();</script>
 </body>
 </html>
