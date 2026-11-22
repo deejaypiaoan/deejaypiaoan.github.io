@@ -519,8 +519,7 @@
       var field = input.getAttribute('data-field');
       var val = (input.value || '').trim();
       if (field === 'storeurl') {
-        if (!val) { showErr(pane, 'Please add your store or website URL.'); return false; }
-        if (!/^https?:\/\//i.test(val)) { val = 'https://' + val; }
+        if (val && !/^https?:\/\//i.test(val)) { val = 'https://' + val; }
         data.storeurl = val;
       } else if (field === 'email') {
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) { showErr(pane, 'Please enter a valid email address.'); return false; }
