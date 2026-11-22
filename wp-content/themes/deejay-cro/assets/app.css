@@ -1,0 +1,797 @@
+/* ============================================================
+   Deejay Piaoan — CRO theme
+   Custom-coded, red/dark editorial layout. No page builder.
+   ============================================================ */
+
+:root{
+  --red:#D40000;
+  --red-dark:#b00000;
+  --dark:#111721;
+  --ink:#111721;
+  --muted:#7B818C;
+  --muted-2:#9D9D9D;
+  --line:#E7E7E7;
+  --bg:#ffffff;
+  --grey:#F5F5F5;
+  --grey-2:#EBEBEB;
+  --radius:8px;
+  --pill:45px;
+  --wrap:1280px;
+  --font:"Red Hat Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+
+/* LCD alarm-clock digits (DSEG7 Classic, SIL OFL) */
+@font-face{
+  font-family:"DSEG7";
+  src:url("fonts/DSEG7Classic-Bold.woff2") format("woff2"),
+      url("fonts/DSEG7Classic-Bold.woff") format("woff");
+  font-weight:700;font-style:normal;font-display:swap;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body.dc{
+  margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+h1,h2,h3,h4{margin:0;font-weight:700;line-height:1.1;color:var(--ink)}
+p{margin:0}
+[hidden]{display:none!important}
+
+/* ---------------- buttons ---------------- */
+.dc-btn{
+  --bfill:rgba(212,0,0,.82);--btext:#fff;--bborder:rgba(255,255,255,.30);
+  position:relative;display:inline-flex;align-items:center;gap:10px;
+  padding:12px 26px;border:1.5px solid var(--bborder);border-radius:var(--pill);
+  background:var(--bfill);color:var(--btext);font-weight:700;font-size:15px;letter-spacing:.3px;
+  overflow:hidden;isolation:isolate;transition:color .3s ease,border-color .3s ease,box-shadow .3s ease,transform .3s ease;
+  -webkit-backdrop-filter:blur(10px) saturate(1.3);backdrop-filter:blur(10px) saturate(1.3);
+  box-shadow:0 10px 26px -14px rgba(212,0,0,.55),inset 0 1px 0 rgba(255,255,255,.4);
+}
+.dc-btn:hover{transform:translateY(-1px);box-shadow:0 14px 30px -14px rgba(212,0,0,.6),inset 0 1px 0 rgba(255,255,255,.5)}
+.dc-btn__t,.dc-btn__i{position:relative;z-index:1}
+.dc-btn::after{
+  content:"";position:absolute;inset:0;z-index:0;background:#fff;
+  transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.54,.3,.02,1.01);
+}
+.dc-btn:hover::after{transform:scaleX(1)}
+.dc-btn:hover{color:var(--red)}
+.dc-btn--outline{--bfill:rgba(255,255,255,.35);--btext:var(--ink);--bborder:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(12px) saturate(1.4);backdrop-filter:blur(12px) saturate(1.4);box-shadow:0 8px 22px -14px rgba(17,23,33,.35),inset 0 1px 0 rgba(255,255,255,.7)}
+.dc-btn--outline::after{background:var(--red)}
+.dc-btn--outline:hover{color:#fff;border-color:var(--red)}
+.dc-btn__i{display:inline-flex;width:18px;height:18px;overflow:hidden}
+.dc-btn__i svg{width:18px;height:18px;flex:none}
+.dc-btn__i-in{display:inline-flex;transition:transform .38s cubic-bezier(.37,.08,.02,.93)}
+.dc-btn:hover .dc-btn__i-in{transform:translateX(-18px)}
+
+/* ---------------- header ---------------- */
+.dc-header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.66);-webkit-backdrop-filter:blur(16px) saturate(1.35);backdrop-filter:blur(16px) saturate(1.35);border-bottom:1px solid rgba(255,255,255,.5);box-shadow:0 1px 0 rgba(17,23,33,.05),0 10px 30px -22px rgba(17,23,33,.35)}
+.dc-header__in{max-width:var(--wrap);margin:0 auto;padding:14px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.dc-logo{display:flex;align-items:center;gap:10px}
+.dc-logo__img{height:40px;width:auto;display:block}
+.dc-logo__mark{
+  display:grid;place-items:center;min-width:36px;height:34px;padding:0 8px;border-radius:9px;
+  background:var(--red);color:#fff;font-weight:900;font-size:16px;letter-spacing:.5px;line-height:1;
+}
+.dc-logo__text{font-weight:800;font-size:19px;letter-spacing:-.3px;color:var(--dark)}
+.dc-logo__text span{color:var(--red)}
+.dc-nav-wrap{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.65);border-radius:var(--pill);padding:4px 5px;-webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);box-shadow:0 8px 26px -14px rgba(17,23,33,.3),inset 0 1px 0 rgba(255,255,255,.8)}
+.dc-nav{display:flex;align-items:center;gap:2px}
+.dc-nav a{padding:9px 16px;border-radius:var(--pill);font-weight:500;font-size:15px;color:#000;transition:color .3s,background .3s;position:relative}
+.dc-nav a:hover{color:var(--red)}
+.dc-nav-wrap .dc-btn{padding:8px 20px;font-size:15px;border-width:1px;--bborder:#e4e4e4}
+.dc-burger{display:none;width:40px;height:40px;border:0;background:transparent;color:#000;align-items:center;justify-content:center;border-radius:50%}
+.dc-burger svg{width:24px;height:24px}
+.dc-burger .dc-burger__close,.dc-burger svg:nth-child(2){display:none}
+.dc-burger[aria-expanded="true"] svg:nth-child(1){display:none}
+.dc-burger[aria-expanded="true"] svg:nth-child(2){display:block}
+.dc-mobile-nav{display:none;flex-direction:column;padding:8px 24px 20px;background:#fff;border-bottom:1px solid var(--line)}
+.dc-mobile-nav a{padding:16px 4px;border-bottom:1px solid var(--line);font-weight:600;font-size:16px}
+.dc-mobile-nav a:last-child{border-bottom:0;color:var(--red)}
+
+/* ---------------- layout helpers ---------------- */
+.dc-main{display:block}
+.dc-hero,.dc-services,.dc-work,.dc-about,.dc-form-sec{max-width:var(--wrap);margin:0 auto}
+.dc-h2{font-size:clamp(2rem,1.2rem+3vw,3.4rem);font-weight:800;letter-spacing:-1px}
+.dc-h2--light{color:#fff}
+.dc-lead{font-size:16px;color:var(--dark);font-weight:500;line-height:1.7}
+
+/* ---------------- hero ---------------- */
+.dc-hero{padding:80px 40px 0}
+.dc-hero__title{
+  font-size:clamp(2rem,1rem+3.2vw,3.5rem);font-weight:800;letter-spacing:-1.2px;
+  max-width:min(760px,92%);color:var(--dark);line-height:1.1
+}
+.dc-hero__sub{margin-top:22px;max-width:60ch;font-size:16px;font-weight:600;letter-spacing:.3px;color:var(--dark);line-height:1.6}
+.dc-hero__row{margin-top:26px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.dc-clocks{display:flex;gap:30px}
+.dc-clock{display:flex;flex-direction:column;align-items:flex-end;line-height:1}
+/* digital readout — matches dennydigit's world-clock skin-3 layout */
+.dc-clock__time{display:inline-flex;align-items:baseline;gap:2px;color:var(--dark)}
+.dc-clock__hh,.dc-clock__mm,.dc-clock__sep{font-family:"DSEG7","Red Hat Display",monospace;font-weight:700;line-height:1}
+.dc-clock__hh,.dc-clock__mm{font-size:19px;letter-spacing:.5px}
+.dc-clock__sep{font-size:17px;color:var(--muted-2);animation:dc-blink 2s steps(1) infinite}
+.dc-clock__mer{margin-left:6px;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--red);align-self:flex-start;margin-top:1px}
+@keyframes dc-blink{50%{opacity:.35}}
+.dc-clock__city{margin-top:7px;font-size:13px;font-weight:500;letter-spacing:.2px;color:var(--muted);text-transform:none}
+
+/* marquee */
+.dc-marquee{margin-top:40px;background:#F9E943;border-radius:8px 8px 0 0;padding:12px 0 8px;overflow:hidden}
+.dc-marquee__track{display:flex;width:max-content;animation:dc-marq 30s linear infinite}
+.dc-marquee__grp{display:flex;align-items:center}
+.dc-marquee__item{font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;padding:0 17px;color:#111}
+.dc-marquee__dot{width:4px;height:4px;border-radius:50%;background:#111;flex:none}
+@keyframes dc-marq{to{transform:translateX(-50%)}}
+
+/* proof: stats + cards */
+.dc-hero__proof{
+  background:var(--grey);border:1px solid #DFDFDF;border-radius:0 0 8px 8px;
+  padding:52px 40px;display:grid;grid-template-columns:42% 58%;gap:20px;align-items:end;
+}
+.dc-stats{display:flex;flex-direction:column;gap:6px}
+.dc-stat{display:flex;flex-direction:column}
+.dc-stat__top{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap}
+.dc-stat__num{display:flex;align-items:baseline;font-size:clamp(3.2rem, 2rem + 4.5vw, 5rem);font-weight:800;color:var(--dark);letter-spacing:-2px;line-height:.85}
+.dc-stat__pre{color:var(--red);margin-right:1px}
+.dc-stat__suf{color:var(--dark)}
+.dc-stat__label{font-size:19px;font-weight:500;color:var(--dark);padding-bottom:6px}
+.dc-stat__hr{height:0;border-top:1.2px solid #717D8F;width:min(340px,86%);margin:10px 0 6px}
+.dc-stat__note{font-size:14px;color:#7B818C;font-weight:500;margin-bottom:18px}
+
+/* cards stack slider */
+.dc-cards{position:relative;height:clamp(330px,37vw,540px)}
+.dc-card{position:absolute;top:0;left:0;right:auto;width:86%;aspect-ratio:1024/737;border-radius:12px;overflow:hidden;box-shadow:0 20px 50px -18px rgba(4,12,34,.45);transform-origin:left center;transition:transform .55s cubic-bezier(.25,.46,.45,.94),opacity .45s ease;background:#fff;border:1px solid #e6e6e6}
+.dc-card.is-leaving{transform:translateX(-128%) translateY(-6px) rotate(-5deg)!important;opacity:0;z-index:99!important;transition:transform .5s cubic-bezier(.5,0,.75,0),opacity .45s ease!important}
+.dc-card img{width:100%;height:100%;display:block;object-fit:cover;object-position:top center;transition:transform .55s ease}
+.dc-card:hover img{transform:scale(1.06)}
+.dc-cards__nav{position:absolute;left:12px;bottom:12px;z-index:20;display:flex;gap:10px}
+.dc-cards__btn{width:36px;height:36px;border:0;border-radius:50%;background:rgba(255,255,255,.92);box-shadow:0 6px 16px rgba(0,0,0,.22);color:var(--dark);display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.dc-cards__btn svg{width:19px;height:19px;transition:transform .12s ease-out}
+.dc-cards__btn:hover svg{color:var(--red)}
+.dc-cards__btn[data-prev]:hover svg{transform:translateX(-3px)}
+.dc-cards__btn[data-next]:hover svg{transform:translateX(3px)}
+
+/* testimonials */
+.dc-tmrow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding:40px 0 10px}
+.dc-tm{margin:0;padding:22px 22px 22px 24px;border-left:1px solid var(--line);display:flex;flex-direction:column;min-height:230px}
+.dc-tm:first-child{border-left:0}
+.dc-tm__q{color:#CACACA;display:block;margin-bottom:8px}
+.dc-tm__q svg{width:34px;height:34px}
+.dc-tm blockquote{margin:0;font-size:15px;font-style:italic;color:var(--dark);line-height:1.55;flex:1}
+.dc-tm__foot{margin-top:16px}
+.dc-stars{display:flex;gap:3px;color:#FFA500;margin-bottom:8px}
+.dc-stars svg{width:15px;height:15px}
+.dc-tm figcaption{display:flex;flex-direction:column;line-height:1.35}
+.dc-tm figcaption strong{font-size:15px;font-weight:600;color:var(--dark)}
+.dc-tm figcaption span{font-size:13px;color:var(--muted)}
+
+/* ---------------- services ---------------- */
+.dc-services{padding:100px 40px}
+.dc-services__intro{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;margin:18px 0 46px;max-width:900px}
+.dc-svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.dc-svc{padding-right:10px}
+.dc-svc__icon{position:relative;width:120px;height:120px;display:grid;place-items:center;margin-bottom:18px}
+.dc-spinner{position:absolute;inset:0;border-radius:50%;border:2px dashed #d8d8d8;border-top-color:var(--red);animation:dc-rotate 8s linear infinite}
+.dc-svc__glyph{position:relative;display:grid;place-items:center;width:64px;height:64px;border-radius:50%;
+  background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.75);color:var(--dark);
+  -webkit-backdrop-filter:blur(10px) saturate(1.3);backdrop-filter:blur(10px) saturate(1.3);
+  box-shadow:0 10px 22px -12px rgba(17,23,33,.3),inset 0 1px 0 rgba(255,255,255,.85)}
+.dc-svc__glyph svg{width:32px;height:32px}
+/* rotating grey brand logos: only the active one shows, they crossfade as the ring turns */
+.dc-svc__logo{position:absolute;inset:0;display:grid;place-items:center;opacity:0;color:#8a9099;
+  transform:scale(.6) rotate(-14deg);transition:opacity .55s ease,transform .55s cubic-bezier(.22,.61,.36,1)}
+.dc-svc__logo.is-on{opacity:1;transform:none}
+.dc-svc__logo svg{width:32px;height:32px}
+.dc-svc h3{font-size:22px;font-weight:700;color:var(--dark);margin-bottom:10px}
+.dc-svc p{font-size:15px;color:#5c626c;line-height:1.65}
+@keyframes dc-rotate{to{transform:rotate(360deg)}}
+
+/* ---------------- work ---------------- */
+.dc-work{padding:90px 40px 100px;max-width:var(--wrap);position:relative}
+.dc-work::before{content:"";position:absolute;top:0;left:calc(50% - 50vw);width:100vw;height:100%;z-index:-1;
+  background-color:#0f1520;
+  background-image:
+    radial-gradient(1100px 560px at 72% 6%, rgba(212,0,0,.14), transparent 60%),
+    radial-gradient(900px 520px at 6% 94%, rgba(31,122,224,.14), transparent 58%),
+    linear-gradient(180deg,#0d1420 0%,#111a28 100%);
+  background-repeat:no-repeat;background-size:cover;background-position:center;
+  background-attachment:fixed}
+.dc-work-outer{background:var(--dark)}
+.dc-work .dc-h2{margin-bottom:36px}
+.dc-work-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.dc-proj{position:relative;display:block;border-radius:14px;overflow:hidden;background:#0d1420;aspect-ratio:1200/864}
+.dc-proj img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .6s ease,filter .5s ease}
+.dc-proj:hover img{transform:scale(1.04);filter:brightness(.5)}
+.dc-proj__overlay{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding:22px;opacity:0;transition:opacity .4s ease}
+.dc-proj:hover .dc-proj__overlay{opacity:1}
+.dc-proj__id{display:flex;align-items:center;gap:12px;color:#fff}
+.dc-proj__mark{display:grid;place-items:center;min-width:34px;height:34px;padding:0 7px;border-radius:8px;background:var(--red);color:#fff;font-weight:900;font-size:14px;letter-spacing:.5px;flex:none}
+.dc-proj__id strong{display:block;font-size:17px;font-weight:700}
+.dc-proj__id span{font-size:13px;color:#c9cdd4}
+.dc-proj__tags{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+.dc-proj__tags li{display:flex;align-items:center;gap:8px;font-size:13px;color:#e7e9ee;background:rgba(0,0,0,.35);padding:4px 10px;border-radius:20px}
+.dc-proj__tags svg{width:14px;height:14px;color:var(--red);flex:none}
+
+/* ---------------- about ---------------- */
+.dc-about{padding:100px 40px}
+.dc-about .dc-h2{margin-bottom:40px}
+.dc-about__grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.dc-about__text h3{font-size:clamp(1.6rem,1rem+1.6vw,2.4rem);font-weight:800;color:var(--dark);margin-bottom:18px;line-height:1.15}
+.dc-about__text p{font-size:16px;color:#4c525c;line-height:1.7;margin-bottom:26px}
+.dc-about__media{position:relative;justify-self:center;max-width:420px;width:100%}
+.dc-about__frame{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 24px 50px -24px rgba(6,16,42,.4)}
+.dc-about__frame img{width:100%;display:block;border-radius:18px;transition:transform .6s ease}
+.dc-about__frame:hover img{transform:scale(1.05)}
+.dc-verify{display:inline-flex;align-items:center;gap:8px;background:#eef5ff;color:#1f5fbf;font-weight:700;font-size:13px;padding:6px 13px 6px 8px;border-radius:20px;margin-bottom:16px}
+.dc-verify svg{width:20px;height:20px;flex:none}
+.dc-about__cta{display:flex;justify-content:flex-start;margin-top:6px}
+/* Upwork badges on the portrait frame */
+.dc-badge{position:absolute;z-index:4;display:flex;flex-direction:column;align-items:center;gap:7px;pointer-events:none;animation:dc-float 4s ease-in-out infinite}
+/* any badge that is a link must be clickable (100% Job Success, Cisco, Prompt) */
+a.dc-badge{pointer-events:auto;cursor:pointer;text-decoration:none}
+.dc-badge--top{animation-duration:4.8s}
+@keyframes dc-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.dc-badge--jss{top:-30px;left:-24px}
+.dc-badge--top{bottom:18px;right:-26px}
+.dc-badge__medal{position:relative;z-index:2;width:60px;height:60px;filter:drop-shadow(0 8px 16px rgba(31,122,224,.4))}
+.dc-badge--top .dc-badge__medal{width:66px;height:66px}
+.dc-badge__medal svg{width:100%;height:100%;display:block}
+.dc-badge__ring{position:absolute;z-index:1;top:-8px;left:50%;transform:translateX(-50%);width:76px;height:76px;border-radius:50%;border:2px dashed #1f7ae0;opacity:.55;animation:dc-rotate 9s linear infinite}
+.dc-badge__tip{background:#fff;color:#111721;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;box-shadow:0 6px 16px rgba(0,0,0,.14);white-space:nowrap}
+
+/* ---------------- contact ---------------- */
+.dc-form-sec{padding:20px 40px 100px}
+.dc-form-card{background:linear-gradient(120deg,#D40000,#ff7a00 60%,#F9E943);border-radius:22px;padding:56px clamp(20px,4vw,70px)}
+.dc-form-card .dc-h2{color:#fff;text-align:center}
+.dc-form-sub{color:rgba(255,255,255,.92);text-align:center;max-width:56ch;margin:12px auto 30px;font-weight:500}
+.dc-form{background:#fff;border-radius:16px;padding:clamp(20px,3vw,40px);max-width:760px;margin:0 auto;box-shadow:0 30px 60px -30px rgba(0,0,0,.4)}
+.dc-form__row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.dc-field{display:flex;flex-direction:column;margin-bottom:16px}
+.dc-field>span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.dc-field--call{margin-top:2px}
+.dc-field__lbl{position:static!important;width:auto!important;height:auto!important;clip:auto!important;overflow:visible!important;display:block;margin-bottom:7px;font-size:13px;font-weight:600;color:var(--dark)}
+.dc-field__hint{margin-top:6px;font-size:12px;color:var(--muted);line-height:1.4}
+.dc-field{min-width:0}
+.dc-field input[type="datetime-local"]{
+  color-scheme:light;
+  width:100%;max-width:100%;min-width:0;box-sizing:border-box;
+  -webkit-appearance:none;appearance:none;
+}
+.dc-field input,.dc-field select,.dc-field textarea{
+  width:100%;padding:15px 16px;border:1px solid #e3e3e3;border-radius:10px;background:#fafafa;
+  font-family:inherit;font-size:15px;color:var(--ink);transition:border-color .2s,background .2s
+}
+.dc-field input:focus,.dc-field select:focus,.dc-field textarea:focus{outline:none;border-color:var(--red);background:#fff}
+.dc-field textarea{resize:vertical}
+.dc-submit{width:100%;margin-top:6px;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--dark);color:#fff;border:0;padding:16px;border-radius:12px;font-weight:700;font-size:16px;transition:background .3s}
+.dc-submit:hover{background:var(--red)}
+.dc-submit svg{width:18px;height:18px}
+.dc-form__note{margin:14px 0 0;text-align:center;font-weight:600;color:var(--dark)}
+
+/* ---------------- footer ---------------- */
+.dc-footer{background:var(--dark);color:#fff;text-align:center;padding:90px 40px 50px;margin-top:0}
+.dc-footer .dc-h2{margin-bottom:16px}
+.dc-footer__sub{color:#b9bfc9;max-width:52ch;margin:0 auto 26px}
+.dc-social{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin:34px 0 30px}
+.dc-social__btn{display:inline-flex;align-items:center;gap:9px;padding:11px 20px;border:1px solid rgba(255,255,255,.2);border-radius:var(--pill);font-weight:600;font-size:14px;color:#fff;transition:background .3s,border-color .3s,color .3s}
+.dc-social__btn svg{width:18px;height:18px}
+.dc-social__btn:hover{background:var(--red);border-color:var(--red)}
+.dc-copy{color:#7a828e;font-size:13px;margin-top:20px}
+
+/* ---------------- reveal states (JS toggles .is-in; gated on .dc-js) ---------------- */
+.dc-js .reveal-fade{opacity:0;transform:translateY(26px)}
+.reveal-fade{transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1)}
+.reveal-fade.is-in{opacity:1;transform:none}
+.dc-js .reveal-text{opacity:0;transform:translateY(32px)}
+.reveal-text{transition:opacity .9s ease,transform .9s cubic-bezier(.22,.61,.36,1)}
+.reveal-text.is-in{opacity:1;transform:none}
+.reveal-clip{overflow:hidden}
+.dc-hero__title.is-split .char{display:inline-block;transform:translateY(1.1em)}
+
+/* ---------------- responsive ---------------- */
+@media (max-width:1024px){
+  .dc-hero__proof{grid-template-columns:1fr;gap:60px}
+  .dc-cards{height:clamp(280px,60vw,420px)}
+  .dc-cards__nav{bottom:-44px}
+  .dc-svc-grid{grid-template-columns:1fr;gap:40px}
+  .dc-svc{display:grid;grid-template-columns:120px 1fr;gap:22px;align-items:center}
+  .dc-svc__icon{margin-bottom:0}
+  .dc-about__grid{grid-template-columns:1fr;gap:44px}
+  .dc-about__media{order:-1}
+}
+@media (max-width:900px){
+  .dc-nav{display:none}
+  .dc-burger{display:inline-flex}
+  .dc-header.is-open .dc-mobile-nav{display:flex}
+}
+@media (max-width:767px){
+  .dc-header__in{padding:12px 16px}
+  .dc-hero{padding:42px 16px 0}
+  .dc-hero__row{flex-direction:column;align-items:flex-start;gap:18px}
+  .dc-hero__row .dc-btn{width:auto}
+  .dc-clocks{display:none}
+  .dc-hero__proof{padding:34px 18px}
+  .dc-tmrow{grid-template-columns:1fr;gap:0;padding-top:26px}
+  .dc-tm{border-left:0;border-top:1px solid var(--line);min-height:0;padding:22px 4px}
+  .dc-tm:first-child{border-top:0}
+  .dc-services{padding:56px 16px}
+  .dc-services__intro{grid-template-columns:1fr;gap:20px}
+  .dc-svc{grid-template-columns:1fr;text-align:center}
+  .dc-svc__icon{margin:0 auto 14px}
+  .dc-svc p{max-width:42ch;margin-inline:auto}
+  .dc-work{padding:50px 16px 60px}
+  .dc-work-grid{grid-template-columns:1fr;gap:16px}
+  .dc-proj__overlay{opacity:1;background:linear-gradient(to top,rgba(6,12,26,.85),transparent 62%);flex-direction:column;align-items:flex-start;gap:12px}
+  .dc-proj__tags{flex-direction:row;flex-wrap:wrap}
+  .dc-about{padding:56px 16px}
+  .dc-form-sec{padding:10px 16px 60px}
+  .dc-form__row{grid-template-columns:1fr}
+  .dc-footer{padding:60px 16px 40px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .dc-marquee__track,.dc-spinner,.dc-badge,.dc-badge__ring{animation:none}
+  .reveal-fade{opacity:1;transform:none;transition:none}
+  .dc-hero__title.is-split .char{transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* --- round 2: mobile tuning for cards + about badges --- */
+@media (max-width:767px){
+  .dc-cards{height:clamp(240px,64vw,360px)}
+  .dc-card{width:80%}
+  .dc-cards__nav{bottom:10px;left:10px}
+  .dc-about__media{max-width:340px}
+  .dc-badge--jss{top:-22px;left:-10px}
+  .dc-badge--top{bottom:14px;right:-10px}
+  .dc-badge--flip{top:-16px;right:-10px}
+  .dc-flip__face .dc-badge__medal{width:52px;height:52px;border-radius:13px}
+  .dc-badge__medal{width:52px;height:52px}
+  .dc-badge--top .dc-badge__medal{width:56px;height:56px}
+  .dc-badge__ring{width:66px;height:66px;top:-7px}
+  .dc-badge__tip{font-size:10px;padding:3px 8px}
+  .dc-verify{font-size:12px}
+}
+
+/* ============================================================
+   round 3: clock skin, glass menu/buttons, brand-logo services,
+   dennydigit-style section backgrounds, mobile card right-anchor
+   ============================================================ */
+
+/* --- premium background on the hero proof (stats + cards) panel --- */
+.dc-hero__proof{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.55), rgba(244,245,247,.72)),
+    url("img/proof-bg.webp") center/cover no-repeat,
+    #f2f3f5;
+  border:1px solid #e4e5e8;
+  position:relative;overflow:hidden;
+}
+.dc-hero__proof>*{position:relative;z-index:1}
+
+/* --- same premium wave background on Services: full-bleed (edge to edge) + FIXED, exactly like Selected Works --- */
+.dc-services{position:relative}
+.dc-services::before{
+  content:"";position:absolute;top:0;left:calc(50% - 50vw);width:100vw;height:100%;z-index:-1;
+  background-color:#f2f3f5;
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,.58), rgba(244,245,247,.74)),
+    url("img/proof-bg.webp");
+  background-repeat:no-repeat,no-repeat;
+  background-size:cover,cover;
+  background-position:center,center;
+  background-attachment:scroll,fixed;
+}
+.dc-services>*{position:relative;z-index:1}
+
+/* --- richer dark texture on Selected Works (matches dennydigit's portfolios bg) --- */
+.dc-work::before{
+  background-color:#060a10;
+  background-image:
+    linear-gradient(180deg, rgba(9,13,20,.72), rgba(9,13,20,.82)),
+    url("img/sw-bg.webp");
+  background-size:cover, cover;
+  background-position:center, center;
+  background-repeat:no-repeat, no-repeat;
+}
+
+/* --- Selected Works: logo chip + glassmorphism on the overlay --- */
+.dc-proj__mark{
+  display:grid;place-items:center;width:40px;height:40px;min-width:40px;padding:5px;border-radius:11px;
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);
+  -webkit-backdrop-filter:blur(10px) saturate(1.3);backdrop-filter:blur(10px) saturate(1.3);
+  box-shadow:0 8px 20px -10px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.4);
+}
+.dc-proj__mark img{width:100%;height:100%;object-fit:contain;display:block}
+.dc-proj__id{padding:9px 14px 9px 10px;border-radius:16px;
+  background:rgba(13,20,32,.4);border:1px solid rgba(255,255,255,.16);
+  -webkit-backdrop-filter:blur(12px) saturate(1.3);backdrop-filter:blur(12px) saturate(1.3)}
+.dc-proj__tags li{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.16);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+
+/* --- glass on the mobile drop-down nav --- */
+.dc-mobile-nav{background:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(16px) saturate(1.35);backdrop-filter:blur(16px) saturate(1.35);border-bottom:1px solid rgba(255,255,255,.5)}
+
+@media (max-width:767px){
+  /* Get In Touch button hugs its content, stays left-aligned */
+  .dc-services__intro .dc-btn{justify-self:start;width:auto}
+}
+
+/* ============================================================
+   round 4: LCD clock font, glass portrait + Upwork badges,
+   Reach Out Today gradient + flying tech-logo backdrop
+   ============================================================ */
+
+/* --- glass frame on the About portrait --- */
+.dc-about__frame{
+  border:1px solid rgba(255,255,255,.5);
+  box-shadow:0 24px 50px -24px rgba(6,16,42,.45), inset 0 1px 0 rgba(255,255,255,.6);
+}
+.dc-about__frame::after{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:18px;
+  background:linear-gradient(135deg, rgba(255,255,255,.22), rgba(255,255,255,0) 42%);
+}
+/* --- glass on the "Top Rated on Upwork" pill --- */
+.dc-verify{
+  background:rgba(238,245,255,.55);border:1px solid rgba(31,95,191,.28);
+  -webkit-backdrop-filter:blur(10px) saturate(1.3);backdrop-filter:blur(10px) saturate(1.3);
+  box-shadow:0 8px 20px -12px rgba(31,95,191,.4),inset 0 1px 0 rgba(255,255,255,.7)}
+/* --- glass on the 100% Job Success / Top Rated badge tips --- */
+.dc-badge__tip{
+  background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.7);
+  -webkit-backdrop-filter:blur(12px) saturate(1.4);backdrop-filter:blur(12px) saturate(1.4);
+  box-shadow:0 8px 18px -8px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.8)}
+.dc-badge__medal{border-radius:50%}
+.dc-badge__medal::before{
+  content:"";position:absolute;inset:-6px;z-index:-1;border-radius:50%;
+  background:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.6);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  box-shadow:0 10px 24px -12px rgba(31,122,224,.5)}
+/* --- Cisco credential badge: rounded-square medal (echoes the Credly badge), clickable to verify --- */
+/* Flip badge — two Cisco credentials share one slot, auto-flipping between faces */
+.dc-badge--flip{top:-22px;right:-28px;animation-duration:5.4s;perspective:760px}
+.dc-flip{position:relative;transform-style:preserve-3d;transition:transform .85s cubic-bezier(.45,.05,.2,1)}
+.dc-flip.is-flipped{transform:rotateY(180deg)}
+.dc-flip__face{display:flex;flex-direction:column;align-items:center;gap:7px;text-decoration:none;cursor:pointer;
+  -webkit-backface-visibility:hidden;backface-visibility:hidden}
+.dc-flip__front{position:relative;pointer-events:auto}
+.dc-flip__back{position:absolute;inset:0;transform:rotateY(180deg);pointer-events:none}
+.dc-flip.is-flipped .dc-flip__front{pointer-events:none}
+.dc-flip.is-flipped .dc-flip__back{pointer-events:auto}
+.dc-flip__face .dc-badge__medal{width:62px;height:62px;border-radius:15px}
+.dc-flip__front .dc-badge__medal{filter:drop-shadow(0 8px 16px rgba(27,160,215,.45))}
+.dc-flip__front .dc-badge__medal::before{border-radius:18px;box-shadow:0 10px 24px -12px rgba(27,160,215,.6)}
+.dc-flip__front .dc-badge__tip{color:#0b5670}
+.dc-flip__back .dc-badge__medal{filter:drop-shadow(0 8px 16px rgba(43,142,64,.4))}
+.dc-flip__back .dc-badge__medal::before{border-radius:18px;box-shadow:0 10px 24px -12px rgba(43,142,64,.55)}
+.dc-flip__back .dc-badge__tip{color:#1f5b2e}
+/* keyboard/reduced-motion fallback: reveal the back face on hover/focus */
+@media (prefers-reduced-motion:reduce){
+  .dc-flip{transition:none}
+  .dc-badge--flip:hover .dc-flip,.dc-badge--flip:focus-within .dc-flip{transform:rotateY(180deg)}
+  .dc-badge--flip:hover .dc-flip__front,.dc-badge--flip:focus-within .dc-flip__front{pointer-events:none}
+  .dc-badge--flip:hover .dc-flip__back,.dc-badge--flip:focus-within .dc-flip__back{pointer-events:auto}
+}
+
+/* --- Reach Out Today: richer gradient + flying logo backdrop --- */
+.dc-form-card{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(120% 90% at 12% 8%, rgba(255,255,255,.18), transparent 42%),
+    linear-gradient(125deg,#c40000 0%,#e23400 34%,#ff7a00 64%,#ffc21e 100%);
+}
+.dc-form-card>*{position:relative;z-index:2}
+.dc-form-fx{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none}
+.dc-fly{position:absolute;left:0;top:0;display:block;color:#fff;opacity:0;
+  will-change:transform,opacity;
+  animation-timing-function:linear;animation-iteration-count:infinite;animation-duration:30s}
+.dc-fly svg{width:100%;height:100%;display:block;filter:drop-shadow(0 4px 10px rgba(0,0,0,.15))}
+/* four diagonal streams so logos cross the whole panel, not just one corner */
+.dc-fly--ne{animation-name:dc-fly-ne}   /* bottom-left  -> top-right   */
+.dc-fly--se{animation-name:dc-fly-se}   /* top-left     -> bottom-right */
+.dc-fly--nw{animation-name:dc-fly-nw}   /* bottom-right -> top-left    */
+.dc-fly--sw{animation-name:dc-fly-sw}   /* top-right    -> bottom-left */
+@keyframes dc-fly-ne{
+  0%{transform:translate3d(0,0,0) rotate(-8deg);opacity:0}
+  12%{opacity:.16}88%{opacity:.16}
+  100%{transform:translate3d(70vw,-80vh,0) rotate(10deg);opacity:0}
+}
+@keyframes dc-fly-se{
+  0%{transform:translate3d(0,0,0) rotate(8deg);opacity:0}
+  12%{opacity:.16}88%{opacity:.16}
+  100%{transform:translate3d(70vw,80vh,0) rotate(-10deg);opacity:0}
+}
+@keyframes dc-fly-nw{
+  0%{transform:translate3d(0,0,0) rotate(8deg);opacity:0}
+  12%{opacity:.16}88%{opacity:.16}
+  100%{transform:translate3d(-70vw,-80vh,0) rotate(-10deg);opacity:0}
+}
+@keyframes dc-fly-sw{
+  0%{transform:translate3d(0,0,0) rotate(-8deg);opacity:0}
+  12%{opacity:.16}88%{opacity:.16}
+  100%{transform:translate3d(-70vw,80vh,0) rotate(10deg);opacity:0}
+}
+/* respect iOS/Android reduce-motion: freeze the logos, keep them as a faint static pattern */
+@media (prefers-reduced-motion:reduce){
+  .dc-fly{animation:none;opacity:.1;transform:none}
+  .dc-fly:nth-child(even){opacity:.07}
+}
+
+/* ============================================================
+   round 5: service placeholder, success popup, See More works,
+   compact footer
+   ============================================================ */
+
+/* --- success popup: swaps in where the form was, then reverts --- */
+.dc-success{
+  background:#fff;border-radius:16px;max-width:760px;margin:0 auto;
+  padding:clamp(38px,5vw,58px) clamp(20px,3vw,40px);
+  box-shadow:0 30px 60px -30px rgba(0,0,0,.4);
+  display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;
+}
+.dc-success__check{display:grid;place-items:center;width:76px;height:76px}
+.dc-success__check svg{width:76px;height:76px;overflow:visible}
+.dc-success__ring{fill:rgba(31,191,107,.08);stroke:#1fbf6b;stroke-width:3;stroke-dasharray:151;stroke-dashoffset:151;animation:dc-ring .5s cubic-bezier(.65,0,.45,1) forwards}
+.dc-success__tick{fill:none;stroke:#1fbf6b;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:48;stroke-dashoffset:48;animation:dc-tick .35s .38s cubic-bezier(.65,0,.45,1) forwards}
+@keyframes dc-ring{to{stroke-dashoffset:0}}
+@keyframes dc-tick{to{stroke-dashoffset:0}}
+.dc-success__msg{font-size:clamp(1.05rem,1rem + .4vw,1.3rem);font-weight:700;color:var(--dark);max-width:34ch;line-height:1.4;margin:0}
+@media (prefers-reduced-motion:reduce){
+  .dc-success__ring,.dc-success__tick{animation:none;stroke-dashoffset:0}
+}
+
+/* --- See More Works button + reveal --- */
+.dc-work__more{display:flex;justify-content:center;margin-top:clamp(28px,4vw,44px)}
+.dc-btn--more{--bfill:rgba(255,255,255,.10);--btext:#fff;--bborder:rgba(255,255,255,.34);box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
+.dc-btn--more::after{background:#fff}
+.dc-btn--more:hover{color:var(--dark);box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
+.dc-proj--more{animation:dc-proj-in .55s cubic-bezier(.22,.61,.36,1) both}
+@keyframes dc-proj-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+/* --- compact footer --- */
+.dc-footer{padding:clamp(40px,5vw,56px) 40px 26px}
+.dc-footer .dc-h2{font-size:clamp(1.5rem,1.1rem + 1.6vw,2.2rem);margin-bottom:10px}
+.dc-footer__sub{margin:0 auto 18px;font-size:14px;max-width:48ch}
+.dc-footer .dc-btn{padding:11px 24px}
+.dc-social{margin:20px 0 18px;gap:10px}
+.dc-social__btn{padding:9px 16px;font-size:13px}
+.dc-copy{margin-top:14px;font-size:12px}
+@media (max-width:767px){
+  .dc-footer{padding:40px 16px 24px}
+  .dc-social{gap:8px}
+  .dc-social__btn{padding:8px 13px}
+}
+
+/* ============================================================
+   round 6: scrollspy active nav + tighter footer
+   ============================================================ */
+
+/* active section highlights its menu item in red */
+.dc-nav a.is-active{color:var(--red);background:rgba(212,0,0,.08)}
+.dc-nav a.is-active:hover{color:var(--red)}
+
+/* footer — compact, textured, fewer rows (lead left, actions right) */
+.dc-footer{position:relative;overflow:hidden;text-align:left;padding:clamp(34px,3.6vw,46px) 40px 18px}
+.dc-footer::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(rgba(255,255,255,.045) 1px, transparent 1px);
+  background-size:22px 22px;
+  -webkit-mask-image:linear-gradient(180deg,#000,transparent 85%);mask-image:linear-gradient(180deg,#000,transparent 85%);
+}
+.dc-footer__glow{position:absolute;z-index:0;top:-60%;left:-6%;width:520px;height:420px;pointer-events:none;
+  background:radial-gradient(closest-side, rgba(212,0,0,.16), transparent 70%);filter:blur(6px)}
+.dc-footer__in{position:relative;z-index:1;max-width:var(--wrap);margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap}
+.dc-footer__lead{max-width:46ch}
+.dc-footer .dc-h2{font-size:clamp(1.4rem,1rem + 1.5vw,2.1rem);margin-bottom:8px}
+.dc-footer__sub{margin:0;font-size:13.5px;line-height:1.5;color:#aeb4bf}
+.dc-footer__actions{display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.dc-footer .dc-btn{padding:11px 24px;font-size:14px}
+.dc-social{margin:0;gap:9px;justify-content:flex-end}
+.dc-social__btn{padding:8px 15px;font-size:13px}
+.dc-copy{position:relative;z-index:1;max-width:var(--wrap);margin:clamp(22px,3vw,30px) auto 0;padding-top:16px;
+  border-top:1px solid rgba(255,255,255,.08);font-size:11.5px;color:#7a828e;text-align:left}
+@media (max-width:767px){
+  .dc-footer{padding:32px 16px 16px;text-align:center}
+  .dc-footer__in{flex-direction:column;align-items:center;gap:18px;text-align:center}
+  .dc-footer__lead{max-width:100%}
+  .dc-footer__actions{align-items:center}
+  .dc-social{justify-content:center;flex-wrap:wrap}
+  .dc-copy{text-align:center}
+}
+
+/* ============================================================
+   round 7: flashcard contact quiz (stepped, pane-up transitions)
+   ============================================================ */
+.dc-quiz{
+  position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;
+  background:
+    radial-gradient(900px 520px at 82% -10%, rgba(212,0,0,.16), transparent 60%),
+    radial-gradient(760px 520px at 0% 108%, rgba(31,122,224,.12), transparent 60%),
+    linear-gradient(180deg,#0e1520,#0b111b);
+  color:#fff;opacity:0;visibility:hidden;transition:opacity .4s ease, visibility .4s;
+}
+.dc-quiz.is-open{opacity:1;visibility:visible}
+.dc-quiz[hidden]{display:none}
+.dc-quiz__bar{display:flex;align-items:center;justify-content:space-between;padding:18px clamp(18px,4vw,44px);flex:none}
+.dc-quiz__logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:18px;letter-spacing:-.3px;color:#fff}
+.dc-quiz__logo img{height:34px;width:auto}
+.dc-quiz__logo span span{color:var(--red)}
+.dc-quiz__close{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#fff;display:grid;place-items:center;transition:background .2s,transform .2s}
+.dc-quiz__close:hover{background:rgba(255,255,255,.14);transform:rotate(90deg)}
+.dc-quiz__close svg{width:20px;height:20px}
+.dc-quiz__panes{position:relative;flex:1;overflow:hidden}
+.dc-quiz__pane{
+  position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
+  width:100%;max-width:820px;margin:0 auto;padding:0 clamp(22px,7vw,90px);
+  opacity:0;transform:translateY(52px);pointer-events:none;
+  transition:opacity .5s ease, transform .55s cubic-bezier(.22,.61,.36,1);
+}
+.dc-quiz__pane.is-active{opacity:1;transform:none;pointer-events:auto}
+.dc-quiz__pane.is-past{opacity:0;transform:translateY(-52px)}
+.dc-quiz__q{display:flex;align-items:center;gap:12px;font-size:clamp(1.5rem,1.1rem + 1.9vw,2.4rem);font-weight:700;letter-spacing:-.4px;margin-bottom:26px}
+.dc-quiz__n{display:inline-grid;place-items:center;min-width:26px;height:26px;padding:0 6px;border-radius:6px;background:var(--red);color:#fff;font-size:14px;font-weight:800}
+.dc-quiz__req{color:var(--red)}
+.dc-quiz__input{
+  width:100%;background:transparent;border:0;border-bottom:2px solid rgba(255,255,255,.28);
+  color:#fff;font-family:inherit;font-size:clamp(1.4rem,1rem + 1.4vw,2rem);font-weight:500;
+  padding:8px 2px;transition:border-color .25s;
+}
+.dc-quiz__input::placeholder{color:rgba(255,255,255,.34)}
+.dc-quiz__input:focus{outline:none;border-bottom-color:var(--red)}
+.dc-quiz__area{resize:none;line-height:1.4;min-height:2.2em;max-height:40vh;overflow:auto}
+.dc-quiz__linehint{margin:12px 0 0;font-size:13px;color:rgba(255,255,255,.5)}
+.dc-quiz__linehint b{color:rgba(255,255,255,.8);font-weight:700}
+.dc-quiz__row{display:flex;align-items:center;gap:16px;margin-top:30px}
+.dc-quiz__ok{
+  background:var(--red);color:#fff;font-weight:800;font-size:16px;letter-spacing:.3px;
+  padding:12px 26px;border:0;border-radius:8px;box-shadow:0 12px 26px -12px rgba(212,0,0,.7);
+  transition:background .2s, transform .2s;
+}
+.dc-quiz__ok:hover{background:#b00000;transform:translateY(-1px)}
+.dc-quiz__hint{font-size:13px;color:rgba(255,255,255,.5)}
+.dc-quiz__hint b{color:rgba(255,255,255,.82)}
+.dc-quiz__err{margin:14px 0 0;color:#ff8a8a;font-size:14px;font-weight:600}
+.dc-quiz__pane--thanks{align-items:center;text-align:center}
+.dc-quiz__check{display:grid;place-items:center;width:84px;height:84px;margin-bottom:22px}
+.dc-quiz__check svg{width:84px;height:84px;overflow:visible}
+.dc-quiz__thanks{font-size:clamp(1.6rem,1.2rem + 2vw,2.6rem);font-weight:800;letter-spacing:-.4px;margin-bottom:26px}
+.dc-btn--ghost-red{--bfill:transparent;--btext:#fff;--bborder:rgba(255,255,255,.4);box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+.dc-btn--ghost-red::after{background:var(--red)}
+.dc-btn--ghost-red:hover{color:#fff;border-color:var(--red)}
+body.dc-quiz-open{overflow:hidden}
+@media (prefers-reduced-motion:reduce){
+  .dc-quiz,.dc-quiz__pane{transition:none}
+}
+
+
+
+/* ============================================================
+   Cisco badge image + "Click me" hint
+   ============================================================ */
+.dc-badge__medal--img{background:none;border-radius:13px}
+.dc-badge__medal--img img{width:100%;height:100%;display:block;object-fit:contain;border-radius:13px}
+
+/* ============================================================
+   Certifications section
+   ============================================================ */
+.dc-certs{max-width:var(--wrap);margin:0 auto;padding:36px 40px 16px}
+.dc-certs .dc-h2{text-align:center}
+.dc-certs__sub{text-align:center;color:var(--muted);max-width:56ch;margin:8px auto 24px;font-weight:500}
+/* compact: half-size tiles so the section stays short and the form is close */
+.dc-certs__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:440px;margin:0 auto}
+.dc-cert{margin:0}
+.dc-cert__tile{position:relative;display:block;width:100%;aspect-ratio:1/1;padding:0;
+  background:#f5f7fa;border:1px solid rgba(6,16,42,.08);border-radius:13px;overflow:hidden;
+  box-shadow:0 12px 26px -18px rgba(6,16,42,.4);cursor:pointer}
+.dc-cert__tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+button.dc-cert__tile:hover img{transform:scale(1.06)}
+button.dc-cert__tile:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.dc-cert__view{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:6px;
+  background:rgba(16,20,32,.5);color:#fff;font-weight:700;font-size:12.5px;opacity:0;transition:opacity .3s;
+  -webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+.dc-cert__view svg{width:16px;height:16px;stroke:#fff}
+button.dc-cert__tile:hover .dc-cert__view,button.dc-cert__tile:focus-visible .dc-cert__view{opacity:1}
+.dc-cert__cap{margin-top:9px;text-align:center}
+.dc-cert__cap strong{display:block;font-size:12.5px;color:var(--ink);font-weight:800;line-height:1.25}
+.dc-cert__cap span{display:block;margin-top:2px;font-size:11px;color:var(--muted);font-weight:500}
+
+/* Certificate lightbox */
+.dc-certmodal{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;padding:26px}
+.dc-certmodal[hidden]{display:none}
+.dc-certmodal__backdrop{position:absolute;inset:0;background:rgba(8,12,22,.82);
+  -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);animation:dc-fade .25s ease}
+.dc-certmodal__inner{position:relative;z-index:2;max-width:min(1100px,94vw);max-height:92vh;
+  animation:dc-pop .28s cubic-bezier(.2,.8,.3,1)}
+.dc-certmodal__stage{position:relative;display:flex;align-items:center;justify-content:center;max-height:92vh}
+/* click-to-verify (certs with a verification URL, e.g. Credly) */
+.dc-certmodal.is-verifiable .dc-certmodal__img{cursor:pointer}
+.dc-certmodal__verify{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:5;
+  display:none;align-items:center;gap:7px;white-space:nowrap;pointer-events:none;
+  background:#161616;color:#fff;font-size:13px;font-weight:800;letter-spacing:.02em;
+  padding:8px 15px;border-radius:22px;box-shadow:0 10px 24px -8px rgba(0,0,0,.55);
+  animation:dc-verifypulse 2.4s ease-in-out infinite}
+.dc-certmodal__verify svg{width:16px;height:16px;stroke:#fff}
+.dc-certmodal.is-verifiable .dc-certmodal__verify{display:flex}
+@keyframes dc-verifypulse{
+  0%,100%{opacity:.55;transform:translateX(-50%) translateY(3px)}
+  50%{opacity:1;transform:translateX(-50%) translateY(0)}
+}
+.dc-certmodal__img{display:block;max-width:100%;max-height:92vh;width:auto;height:auto;border-radius:10px;
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.7)}
+.dc-certmodal__x{position:absolute;top:-16px;right:-16px;width:42px;height:42px;border-radius:50%;border:0;cursor:pointer;
+  background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px -8px rgba(0,0,0,.55);z-index:4}
+.dc-certmodal__x svg{width:20px;height:20px;stroke:#161616;stroke-width:2.4}
+.dc-certmodal__x:hover{background:var(--red)}
+.dc-certmodal__x:hover svg{stroke:#fff}
+/* prev / next arrows — shown only for multi-image galleries */
+.dc-certmodal__nav{position:absolute;top:50%;transform:translateY(-50%);z-index:4;
+  width:46px;height:46px;border-radius:50%;border:0;cursor:pointer;
+  background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 24px -8px rgba(0,0,0,.5);transition:background .2s,transform .2s}
+.dc-certmodal__nav svg{width:22px;height:22px;stroke:#161616;stroke-width:2.2}
+.dc-certmodal__nav:hover{background:var(--red)}
+.dc-certmodal__nav:hover svg{stroke:#fff}
+.dc-certmodal__nav--prev{left:-58px}
+.dc-certmodal__nav--next{right:-58px}
+.dc-certmodal__nav[hidden]{display:none}
+/* dots */
+.dc-certmodal__dots{position:absolute;left:0;right:0;bottom:-30px;display:flex;gap:8px;justify-content:center}
+.dc-certmodal__dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.45);transition:background .25s,transform .25s}
+.dc-certmodal__dot.is-on{background:#fff;transform:scale(1.25)}
+body.dc-certmodal-open{overflow:hidden}
+@keyframes dc-fade{from{opacity:0}to{opacity:1}}
+@keyframes dc-pop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+
+@media (max-width:560px){
+  .dc-certs{padding:26px 16px 12px}
+  .dc-certs__grid{gap:14px}
+  .dc-cert__cap strong{font-size:13.5px}
+  .dc-cert__cap span{font-size:11.5px}
+  .dc-certmodal__verify{font-size:11.5px;padding:6px 12px;bottom:10px}
+  .dc-certmodal{padding:16px}
+  .dc-certmodal__x{top:-10px;right:-10px;width:38px;height:38px}
+  .dc-certmodal__nav{width:40px;height:40px}
+  .dc-certmodal__nav--prev{left:6px}
+  .dc-certmodal__nav--next{right:6px}
+  .dc-certmodal__dots{bottom:-24px}
+}
+@media (prefers-reduced-motion:reduce){
+  .dc-certmodal__verify{animation:none;opacity:1;transform:translateX(-50%)}
+  .dc-certmodal__backdrop,.dc-certmodal__inner{animation:none}
+  .dc-cert__tile img{transition:none}
+}
+
+/* ============================================================
+   Compact certifications (About left column) + See all
+   ============================================================ */
+.dc-about__certs{margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.dc-about__certs-h{display:block;font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.dc-about__certs-row{display:flex;gap:12px;flex-wrap:wrap}
+.dc-minicert{position:relative;width:74px;height:74px;padding:0;flex:none;cursor:pointer;
+  background:#f5f7fa;border:1px solid rgba(6,16,42,.1);border-radius:12px;overflow:hidden;
+  box-shadow:0 8px 18px -12px rgba(6,16,42,.4);transition:transform .25s,box-shadow .25s}
+.dc-minicert img{width:100%;height:100%;object-fit:cover;display:block}
+.dc-minicert:hover{transform:translateY(-2px);box-shadow:0 14px 24px -12px rgba(6,16,42,.5)}
+.dc-minicert:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.dc-about__certs-all{margin-top:16px;display:inline-flex;align-items:center;gap:7px;
+  background:none;border:0;padding:0;color:var(--red);font-weight:700;font-size:14px;cursor:pointer}
+.dc-about__certs-all svg{width:16px;height:16px;stroke:currentColor;transition:transform .25s}
+.dc-about__certs-all:hover svg{transform:translateX(4px)}
+/* collapse (Show less) button in the expanded Certifications section */
+.dc-certs__foot{display:flex;justify-content:center;margin-top:26px}
+.dc-certs__collapse{display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+  background:#fff;border:1px solid var(--line);border-radius:var(--pill);padding:11px 22px;
+  color:var(--dark);font-weight:700;font-size:14px;transition:border-color .25s,color .25s,box-shadow .25s}
+.dc-certs__collapse svg{width:16px;height:16px;stroke:currentColor}
+.dc-certs__collapse:hover{color:var(--red);border-color:var(--red);box-shadow:0 8px 20px -12px rgba(212,0,0,.4)}
+/* the full section is revealed (via [hidden] removal) only after See all is clicked */
+.dc-certs{scroll-margin-top:90px}
+@media (max-width:560px){
+  .dc-minicert{width:64px;height:64px}
+  .dc-about__certs-all{font-size:13px}
+}
