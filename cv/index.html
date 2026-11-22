@@ -97,12 +97,12 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:0 16px 30px}
     <div class="actions">
       <a class="btn btn--red" href="/cv/Deejay-Piaoan-CV.pdf" download="Deejay-Piaoan-CV.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download CV (PDF)</a>
       <a class="btn" href="/resume/Deejay-Piaoan-Resume.pdf" download="Deejay-Piaoan-Resume.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download Resume (PDF)</a>
-      <a class="btn" href="mailto:deejaydpiaoan@gmail.com?subject=Interview%20invitation%20for%20Deejay%20Piaoan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Invite to interview</a>
+      <a data-email class="btn" href="mailto:deejaydpiaoan@gmail.com?subject=Interview%20invitation%20for%20Deejay%20Piaoan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Invite to interview</a>
     </div>
     <div class="contact">
-      <a href="mailto:deejaydpiaoan@gmail.com"><b>Email</b>deejaydpiaoan@gmail.com</a>
+      <a data-email href="mailto:deejaydpiaoan@gmail.com"><b>Email</b>deejaydpiaoan@gmail.com</a>
       <a href="tel:+639317782914"><b>Mobile</b>+63 931 778 2914</a>
-      <a href="https://wa.me/639317782914?text=Hi%20Deejay%2C%20I%20saw%20your%20portfolio" target="_blank" rel="noopener"><b>WhatsApp</b>+63 931 778 2914</a>
+      <a data-wa href="https://wa.me/639317782914?text=Hi%20Deejay%2C%20I%20saw%20your%20portfolio" target="_blank" rel="noopener"><b>WhatsApp</b>+63 931 778 2914</a>
       <a href="#" data-slack title="Slack: deejaydpiaoan@gmail.com"><b>Slack</b>deejaydpiaoan@gmail.com</a>
       <a href="https://www.upwork.com/freelancers/deejayp2" target="_blank" rel="noopener"><b>Upwork</b>Top Rated profile</a>
       <div><b>Location</b>Sudipen, La Union, PH</div>
@@ -127,7 +127,11 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:0 16px 30px}
 <footer>&copy; 2026 Deejay D. Piaoan &middot; <a href="/">deejaypiaoan.free.nf</a></footer>
 <style>.djtoast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:2147483000;max-width:calc(100% - 32px);background:#202124;color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:12px 16px;font:600 14px/1.45 inherit;box-shadow:0 12px 30px -10px rgba(0,0,0,.5)}
 </style>
-<script>(function(){var E='deejaydpiaoan@gmail.com';function toast(m){var o=document.querySelector('.djtoast');if(o)o.remove();var t=document.createElement('div');t.className='djtoast';t.setAttribute('role','status');t.textContent=m;document.body.appendChild(t);setTimeout(function(){t.remove();},7000);}
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-slack]');if(!a)return;e.preventDefault();toast('My Slack: '+E+'. Add me with this email in Slack and I will accept right away.');try{if(navigator.clipboard)navigator.clipboard.writeText(E).catch(function(){});}catch(x){}});})();</script>
+<script>(function(){var E='deejaydpiaoan@gmail.com';function toast(m){var o=document.querySelector('.djtoast');if(o)o.remove();var t=document.createElement('div');t.className='djtoast';t.setAttribute('role','status');t.textContent=m;document.body.appendChild(t);setTimeout(function(){t.remove();},8000);}
+function copy(){try{if(navigator.clipboard)navigator.clipboard.writeText(E).catch(function(){});}catch(x){}}
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-slack],a[data-wa],a[data-email]');if(!a)return;
+if(a.hasAttribute('data-slack')){e.preventDefault();copy();toast('My Slack: '+E+'. Add me with this email in Slack and I will accept right away.');return;}
+if(a.hasAttribute('data-wa')){e.preventDefault();var u=a.href,w=null;try{w=window.open(u,'_blank');}catch(x){}if(w){try{w.opener=null;}catch(x){}}else{location.href=u;}toast('Opening WhatsApp chat with Deejay (+63 931 778 2914)...');return;}
+if(a.hasAttribute('data-email')){copy();setTimeout(function(){toast('Email: '+E+' (copied). If no email app opened, paste it into Gmail or Outlook.');},300);}});})();</script>
 </body>
 </html>
