@@ -191,10 +191,10 @@ img{max-width:100%;display:block}
 /* showcase 3D carousel */
 .showcase{margin-top:14px;background:var(--panel);border:1px solid var(--line);border-radius:24px;
   box-shadow:var(--shadow);padding:26px 20px 30px;overflow:hidden}
-.stage{perspective:1200px;height:340px;position:relative;margin-top:8px}
+.stage{perspective:1400px;height:340px;position:relative;margin-top:8px}
 .carousel{position:absolute;inset:0;transform-style:preserve-3d;transform:translateZ(-360px) rotateY(0deg);
   transition:transform .9s cubic-bezier(.3,.7,.2,1)}
-.cface{position:absolute;top:50%;left:50%;width:400px;height:262px;margin:-131px 0 0 -200px;
+.cface{position:absolute;top:50%;left:50%;width:400px;height:262px;margin:-131px 0 0 -200px;transition:opacity .6s,filter .6s;
   border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(20,29,51,.6);
   background:var(--panel2);backface-visibility:hidden}
 .cface img{width:100%;height:100%;object-fit:cover}
@@ -247,7 +247,6 @@ img{max-width:100%;display:block}
   .card.projects{grid-column:span 1}
   .tgrid{grid-template-columns:1fr}
   .cface{width:300px;height:196px;margin:-98px 0 0 -150px}
-  .carousel{transform:translateZ(-300px)}
   .stage{height:250px}
 }
 
@@ -402,7 +401,7 @@ html[data-theme="dark"] .avail{color:#4ade80}
       <a href="#projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h6l2 2h10v9H3z"/></svg>Projects</a>
       <a href="#services"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg>Services</a>
       <a href="#showcase"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8"/></svg>Showcase</a>
-      <a href="#clients"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 5 5.6.6-4 4 1 5.4L12 19l-5 3 1-5.4-4-4 5.6-.6z"/></svg>Clients</a>
+      <a href="#clients"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.6l2.83 5.74 6.33.92-4.58 4.47 1.08 6.31L12 17.06l-5.66 2.98 1.08-6.31-4.58-4.47 6.33-.92z"/></svg>Clients</a>
       <a href="#about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>About</a>
       <a href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z"/><path d="M4 6l8 6 8-6"/></svg>Contact</a>
       <div class="nav-sep"></div>
@@ -487,7 +486,7 @@ html[data-theme="dark"] .avail{color:#4ade80}
         <p class="cdesc">TOPCIT Level 4 &mdash; top 10% of IT candidates nationwide.</p>
         <div class="badge-wrap">
           <div class="badge"><div class="bi"><div class="bt">TOPCIT</div><div class="bn">Level 4</div><div class="bs">789 / 1000</div></div></div>
-          <a class="cred-pill" href="/#certs"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 5 5.6.6-4 4 1 5.4L12 19l-5 3 1-5.4-4-4 5.6-.6z"/></svg> Cisco Certified &times;3</a>
+          <a class="cred-pill" href="/#certs"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.83 5.74 6.33.92-4.58 4.47 1.08 6.31L12 17.06l-5.66 2.98 1.08-6.31-4.58-4.47 6.33-.92z"/></svg> Cisco Certified &times;3</a>
           <div class="certs"><span>Ethical Hacker</span><span>Industrial Cybersecurity</span><span>Prompt Like an Engineer</span><span>Google Cloud GenAI</span></div>
         </div>
         <div class="tesda" id="tesda"><a class="tesda-slot" href="img/tesda-epas-nc2.jpg" target="_blank" rel="noopener" aria-label="View TESDA EPAS NC II certificate"><img src="img/tesda-epas-nc2.jpg" alt="TESDA EPAS NC II certificate of Deejay Piaoan" loading="lazy" onerror="var a=this.parentNode;a.classList.add('empty');a.removeAttribute('href');a.removeAttribute('aria-label');this.remove()"><span>Certificate<br>coming soon</span></a><div class="tesda-t"><b>TESDA NC II</b><small>Electronic Products Assembly &amp; Servicing (EPAS), 2026</small><em>Certificate pending</em></div></div>
@@ -620,18 +619,20 @@ var slides=[
   {img:'img/shot-7856c721.webp',t:'ModRetro',s:'Shopify bundle builder'}
 ];
 var carousel=document.getElementById('carousel'),dots=document.getElementById('dots');
-var N=slides.length, cur=0, radius=360;
+var N=slides.length, cur=0, radius=430, faces=[];
 function isMobile(){return window.innerWidth<=820;}
-function build(){radius=isMobile()?300:360;carousel.innerHTML='';dots.innerHTML='';
+function build(){var fw=isMobile()?300:400;radius=Math.round((fw/2)/Math.tan(Math.PI/N))+(isMobile()?14:24);carousel.innerHTML='';dots.innerHTML='';faces=[];
   var ang=360/N;
   slides.forEach(function(s,i){var f=document.createElement('div');f.className='cface';
     f.style.transform='rotateY('+(i*ang)+'deg) translateZ('+radius+'px)';
     f.innerHTML='<img src="'+s.img+'" alt="'+s.t+' website screenshot" decoding="async"><div class="cl"><span>'+s.t+'</span><small>'+s.s+'</small></div>';
-    carousel.appendChild(f);
+    f.addEventListener('click',function(){var d=((i-cur)%N+N)%N;if(d>N/2)d-=N;if(d){cur+=d;spin();resetAuto();}});
+    faces.push(f);carousel.appendChild(f);
     var d=document.createElement('i');d.addEventListener('click',function(){cur=i;spin();});dots.appendChild(d);});
   spin();}
 function spin(){var ang=360/N;carousel.style.transform='translateZ(-'+radius+'px) rotateY('+(-cur*ang)+'deg)';
-  [].forEach.call(dots.children,function(d,i){d.className=i===((cur%N)+N)%N?'on':'';});}
+  [].forEach.call(dots.children,function(d,i){d.className=i===((cur%N)+N)%N?'on':'';});
+  faces.forEach(function(f,i){var d=Math.abs(((i-cur)%N+N)%N);d=Math.min(d,N-d);f.style.opacity=d===0?1:d===1?.55:.18;f.style.filter=d===0?'none':'saturate(.6)';f.style.cursor=d===0?'default':'pointer';f.style.zIndex=10-d;});}
 document.getElementById('next').addEventListener('click',function(){cur++;spin();resetAuto();});
 document.getElementById('prev').addEventListener('click',function(){cur--;spin();resetAuto();});
 var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
