@@ -103,6 +103,7 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:0 16px 30px}
       <a href="mailto:deejaydpiaoan@gmail.com"><b>Email</b>deejaydpiaoan@gmail.com</a>
       <a href="tel:+639317782914"><b>Mobile</b>+63 931 778 2914</a>
       <a href="https://wa.me/639317782914?text=Hi%20Deejay%2C%20I%20saw%20your%20portfolio" target="_blank" rel="noopener"><b>WhatsApp</b>+63 931 778 2914</a>
+      <a href="#" data-slack title="Slack: deejaydpiaoan@gmail.com"><b>Slack</b>deejaydpiaoan@gmail.com</a>
       <a href="https://www.upwork.com/freelancers/deejayp2" target="_blank" rel="noopener"><b>Upwork</b>Top Rated profile</a>
       <div><b>Location</b>Sudipen, La Union, PH</div>
     </div>
@@ -124,5 +125,9 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:0 16px 30px}
 </section>
 
 <footer>&copy; 2026 Deejay D. Piaoan &middot; <a href="/">deejaypiaoan.free.nf</a></footer>
+<style>.djtoast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:2147483000;max-width:calc(100% - 32px);background:#202124;color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:12px 16px;font:600 14px/1.45 inherit;box-shadow:0 12px 30px -10px rgba(0,0,0,.5)}
+</style>
+<script>(function(){var E='deejaydpiaoan@gmail.com';function toast(m){var t=document.createElement('div');t.className='djtoast';t.setAttribute('role','status');t.textContent=m;document.body.appendChild(t);setTimeout(function(){t.remove();},6000);}
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-slack]');if(!a)return;e.preventDefault();var done=function(){toast('Slack: '+E+' (copied). Add me in Slack with this email and I will accept right away.');};try{navigator.clipboard.writeText(E).then(done,done);}catch(x){done();}});})();</script>
 </body>
 </html>
